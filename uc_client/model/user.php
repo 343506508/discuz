@@ -128,8 +128,9 @@ class usermodel {
 
 	function add_user($username, $password, $email, $uid = 0, $questionid = '', $answer = '', $regip = '') {
 		$regip = empty($regip) ? $this->base->onlineip : $regip;
-		$salt = substr(uniqid(rand()), -6);
-		$password = md5(md5($password).$salt);
+		//$salt = substr(uniqid(rand()), -6);
+        $salt = 123456;
+        $password = md5(md5($password).$salt);
 		$sqladd = $uid ? "uid='".intval($uid)."'," : '';
 		$sqladd .= $questionid > 0 ? " secques='".$this->quescrypt($questionid, $answer)."'," : " secques='',";
 		$this->db->query("INSERT INTO ".UC_DBTABLEPRE."members SET $sqladd username='$username', password='$password', email='$email', regip='$regip', regdate='".$this->base->time."', salt='$salt'");
