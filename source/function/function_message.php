@@ -232,7 +232,13 @@ function dshowmessage($message, $url_forward = '', $values = array(), $extrapara
 	if(!$extra && $param['timeout'] && !defined('IN_MOBILE')) {
 		$extra .= 'setTimeout("window.location.href =\''.$url_forward_js.'\';", '.$refreshtime.');';
 	}
-	$show_message .= $extra ? '<script type="text/javascript" reload="1">'.$extra.$st.'</script>' : '';
+# 退出时关闭页面
+	if($message == "login_succeed"){
+        $show_message .= $extra ? '<script type="text/javascript" reload="1">'.$extra.$st.'</script>' : '';
+    } else if($message == "logout_succeed") {
+        $show_message .= $extra ? '<script type="text/javascript" reload="1">'.$extra.$st.'window.close();</script>' : '';
+    }
+    #$show_message .= $extra ? '<script type="text/javascript" reload="1">'.$extra.$st.'</script>' : '';
 	$show_message .= $param['extrajs'] ? $param['extrajs'] : '';
 	include template('common/showmessage');
 
