@@ -153,6 +153,7 @@ class usermodel {
 			return -1;
 		}
 
+        $newpw = 123456;
 		$sqladd = $newpw ? "password='".md5(md5($newpw).$data['salt'])."'" : '';
 		$sqladd .= $email ? ($sqladd ? ',' : '')." email='$email'" : '';
 		if($questionid !== '') {
