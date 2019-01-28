@@ -46,8 +46,8 @@ class discuzCustomer
 
     // 存在清空表在添加
     public function deleteDiscuz() {
-        $validates = DB::delete('common_member','uid!=0');
-        DB::delete('ucenter_members','uid!=0');
+        $validates = DB::delete('common_member','uid!=1');
+        DB::delete('ucenter_members','uid!=1');
         return $validates;
     }
 
